@@ -4,6 +4,9 @@
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
 
+(use-package counsel)
+(ivy-mode 1)
+
 ;;Languages
 ;;  LSP
 (use-package lsp-mode)
