@@ -41,3 +41,4 @@
 
 ;;Other
 (electric-pair-mode 1)
+(set-default 'truncate-lines t)
