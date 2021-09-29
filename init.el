@@ -8,9 +8,9 @@
 (ivy-mode 1)
 
 ;;Languages
-;;  LSP
 (use-package lsp-mode)
 (use-package lsp-ui)
+(setq lsp-ui-doc-position 'bottom)
 ;;  Go
 (use-package go-mode)
 (add-hook 'go-mode-hook 'lsp-deferred)
