@@ -15,6 +15,9 @@
 (use-package go-mode)
 (add-hook 'go-mode-hook 'lsp-deferred)
 
+;;Git
+(use-package magit)
+
 ;;Tab width
 (setq default-tab-width 4)
 (setq c-basic-offset 4)
