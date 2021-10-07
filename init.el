@@ -56,3 +56,6 @@
 ;;Other
 ;;  Disable line wrapping
 (set-default 'truncate-lines t)
+;;  Enable functions disabled by default
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
