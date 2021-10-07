@@ -23,6 +23,11 @@
 ;;  Go
 (use-package go-mode)
 (add-hook 'go-mode-hook 'lsp-deferred)
+;;Web
+
+(use-package web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 ;;Git
 (use-package magit)
