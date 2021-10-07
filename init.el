@@ -6,6 +6,12 @@
 
 (use-package counsel)
 (ivy-mode 1)
+;;Parens
+
+(use-package smartparens
+  :config
+  (smartparens-global-mode t)
+  (require 'smartparens-config))
 
 ;;Languages
 (use-package lsp-mode)
@@ -40,5 +46,4 @@
 (global-set-key [prior] (lambda () (interactive) (scroll-down ew-scroll-lines-amount)))
 
 ;;Other
-(electric-pair-mode 1)
 (set-default 'truncate-lines t)
