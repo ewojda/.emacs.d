@@ -54,4 +54,5 @@
 (global-set-key [prior] (lambda () (interactive) (scroll-down ew-scroll-lines-amount)))
 
 ;;Other
+;;  Disable line wrapping
 (set-default 'truncate-lines t)
