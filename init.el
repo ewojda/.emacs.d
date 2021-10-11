@@ -64,8 +64,8 @@
 (scroll-bar-mode 1)
 (setq ew-scroll-lines-amount 5)
 
-(global-set-key (kbd "C-v") (lambda () (interactive) (scroll-up ew-scroll-lines-amount)))
-(global-set-key (kbd "M-v") (lambda () (interactive) (scroll-down ew-scroll-lines-amount)))
+(global-set-key (kbd "C-v") 'yank)
+(global-set-key (kbd "M-v") 'yank-pop)
 (global-set-key [next] (lambda () (interactive) (scroll-up ew-scroll-lines-amount)))
 (global-set-key [prior] (lambda () (interactive) (scroll-down ew-scroll-lines-amount)))
 
