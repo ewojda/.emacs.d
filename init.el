@@ -63,3 +63,5 @@
 (put 'upcase-region 'disabled nil)
 ;;  Disable electric-indent-mode
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+;;  Make tab insert literal tab
+(global-set-key [tab] 'tab-to-tab-stop)
