@@ -1,7 +1,6 @@
 (load "~/.emacs.d/sanemacs.el" nil t)
 
 ;;Autocomplete
-
 (use-package yasnippet
   :config
   (yas-global-mode 1))
@@ -13,48 +12,35 @@
   (ivy-mode 1))
 
 ;;Parens
-
 (use-package smartparens
   :config
   (smartparens-global-mode t)
   (require 'smartparens-config))
 
 ;;-----Languages-----
-
 (use-package lsp-mode)
 (use-package lsp-ui
   :config
   (setq lsp-ui-doc-position 'bottom))
-
 ;;Go
-
 (use-package go-mode
   :config
   (add-hook 'go-mode-hook 'lsp-deferred))
-
 ;;Web
-
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
-;;-----End Languages-----
-
 ;;Git
-
 (use-package magit)
 
 ;;Tab width
-
 (setq default-tab-width 4)
 (setq c-basic-offset 4)
-
-;;Tabs
-
+;;Tab bar
 (tab-bar-mode 1)
 
 ;;Theme
-
 (use-package monokai-theme
   :config
   (load-theme 'monokai t))
