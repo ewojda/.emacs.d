@@ -65,3 +65,5 @@
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 ;;  Make tab insert literal tab
 (global-set-key [tab] 'tab-to-tab-stop)
+;;  Autoindent with S-tab
+(global-set-key [backtab] 'indent-for-tab-command)
