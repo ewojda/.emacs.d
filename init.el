@@ -42,12 +42,14 @@
 ;;Scrolling
 (setq scroll-preserve-screen-position t)
 (scroll-bar-mode 1)
-(setq ew-scroll-lines-amount 5)
 
-(global-set-key (kbd "<next>") (lambda () (interactive) (scroll-up ew-scroll-lines-amount)))
-(global-set-key (kbd "<prior>") (lambda () (interactive) (scroll-down ew-scroll-lines-amount)))
-(global-set-key (kbd "C-<next>") (lambda () (interactive) (scroll-left ew-scroll-lines-amount)))
-(global-set-key (kbd "C-<prior>") (lambda () (interactive) (scroll-right ew-scroll-lines-amount)))
+(setq ew-scroll-lines-vertical-amount 5)
+(setq ew-scroll-lines-horizontal-amount 20)
+
+(global-set-key (kbd "<next>") (lambda () (interactive) (scroll-up ew-scroll-lines-vertical-amount)))
+(global-set-key (kbd "<prior>") (lambda () (interactive) (scroll-down ew-scroll-lines-vertical-amount)))
+(global-set-key (kbd "C-<next>") (lambda () (interactive) (scroll-left ew-scroll-lines-horizontal-amount)))
+(global-set-key (kbd "C-<prior>") (lambda () (interactive) (scroll-right ew-scroll-lines-horizontal-amount)))
 
 ;;Other
 ;;  Set tab width
