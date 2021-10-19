@@ -54,6 +54,8 @@
 (global-set-key (kbd "M-v") 'yank-pop)
 (global-set-key [next] (lambda () (interactive) (scroll-up ew-scroll-lines-amount)))
 (global-set-key [prior] (lambda () (interactive) (scroll-down ew-scroll-lines-amount)))
+(global-set-key (kbd "C-<next>") (lambda () (interactive) (scroll-left ew-scroll-lines-amount)))
+(global-set-key (kbd "C-<prior>") (lambda () (interactive) (scroll-right ew-scroll-lines-amount)))
 
 ;;Other
 ;;  Disable line wrapping
