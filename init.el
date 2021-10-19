@@ -17,28 +17,22 @@
   (smartparens-global-mode t)
   (require 'smartparens-config))
 
-;;-----Languages-----
+;;-----Code-----
+;;  LSP
 (use-package lsp-mode)
 (use-package lsp-ui
   :config
   (setq lsp-ui-doc-position 'bottom))
-;;Go
+;;  Go
 (use-package go-mode
   :config
   (add-hook 'go-mode-hook 'lsp-deferred))
-;;Web
+;;  Web
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
-
-;;Git
+;;  Git
 (use-package magit)
-
-;;Tab width
-(setq default-tab-width 4)
-(setq c-basic-offset 4)
-;;Tab bar
-(tab-bar-mode 1)
 
 ;;Theme
 (use-package monokai-theme
@@ -50,16 +44,20 @@
 (scroll-bar-mode 1)
 (setq ew-scroll-lines-amount 5)
 
-(global-set-key (kbd "C-v") 'yank)
-(global-set-key (kbd "M-v") 'yank-pop)
-(global-set-key [next] (lambda () (interactive) (scroll-up ew-scroll-lines-amount)))
-(global-set-key [prior] (lambda () (interactive) (scroll-down ew-scroll-lines-amount)))
 (global-set-key (kbd "<next>") (lambda () (interactive) (scroll-up ew-scroll-lines-amount)))
 (global-set-key (kbd "<prior>") (lambda () (interactive) (scroll-down ew-scroll-lines-amount)))
 (global-set-key (kbd "C-<next>") (lambda () (interactive) (scroll-left ew-scroll-lines-amount)))
 (global-set-key (kbd "C-<prior>") (lambda () (interactive) (scroll-right ew-scroll-lines-amount)))
 
 ;;Other
+;;  Set tab width
+(setq default-tab-width 4)
+(setq c-basic-offset 4)
+;;  Enable tab bar
+(tab-bar-mode 1)
+;;  Paste with C-v
+(global-set-key (kbd "C-v") 'yank)
+(global-set-key (kbd "M-v") 'yank-pop)
 ;;  Disable line wrapping
 (set-default 'truncate-lines t)
 ;;  Enable functions disabled by default
