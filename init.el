@@ -53,8 +53,9 @@
 
 ;;Other
 ;;  Set tab width
-(setq default-tab-width 4)
-(setq c-basic-offset 4)
+(setq-default c-basic-offset 4
+              tab-width 4
+              indent-tabs-mode t)
 ;;  Enable tab bar
 (tab-bar-mode 1)
 ;;  Paste with C-v
