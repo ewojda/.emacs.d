@@ -66,9 +66,15 @@
 ;;  Enable functions disabled by default
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(put 'erase-buffer 'disabled nil)
 ;;  Disable electric-indent-mode
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 ;;  Make tab insert literal tab
 (global-set-key [tab] 'tab-to-tab-stop)
 ;;  Autoindent with S-tab
 (global-set-key [backtab] 'indent-for-tab-command)
+;;  Eshell
+(defun eshell/clear ()
+  "Clear the eshell buffer."
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
