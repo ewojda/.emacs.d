@@ -73,3 +73,8 @@
 (global-set-key [tab] 'tab-to-tab-stop)
 ;;  Autoindent with S-tab
 (global-set-key [backtab] 'indent-for-tab-command)
+;;  Drag text with alt-up/down
+(use-package drag-stuff
+  :config
+  (global-set-key (kbd "M-<up>") (lambda () (interactive) (drag-stuff-up 1)))
+  (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-up -1))))
