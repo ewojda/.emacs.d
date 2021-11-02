@@ -33,6 +33,14 @@
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 ;;  Git
 (use-package magit)
+;;  Lua
+(use-package lua-mode
+  :config
+  (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+  (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+  (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+  (setq lua-indent-level 4)
+  (add-hook 'lua-mode-hook #'lsp-deferred))
 
 ;;Theme
 (use-package monokai-theme
