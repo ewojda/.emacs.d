@@ -73,8 +73,3 @@
 (global-set-key [tab] 'tab-to-tab-stop)
 ;;  Autoindent with S-tab
 (global-set-key [backtab] 'indent-for-tab-command)
-;;  Eshell
-(defun eshell/clear ()
-  "Clear the eshell buffer."
-  (let ((inhibit-read-only t))
-    (erase-buffer)))
