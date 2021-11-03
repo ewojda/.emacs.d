@@ -115,3 +115,8 @@ With ARG, perform this action that many times."
   (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-down 1))))
 ;;  Set default mode to prog-mode
 (setq-default major-mode 'prog-mode)
+;;  Change font size interactively
+(defun ew-font-size () (interactive)
+  (let ((size (string-to-number (read-string "New font size: "))))
+	(set-face-attribute 'default nil :height size)))
+
