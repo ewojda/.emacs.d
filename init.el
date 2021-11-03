@@ -59,6 +59,39 @@
 (global-set-key (kbd "C-<next>") (lambda () (interactive) (scroll-left ew-scroll-lines-horizontal-amount)))
 (global-set-key (kbd "C-<prior>") (lambda () (interactive) (scroll-right ew-scroll-lines-horizontal-amount)))
 
+;;Indentation
+(defun ew-newline-and-indent (&optional arg)
+  "Insert a newline, then indent exactly as last line.
+Adapted from `newline-and-indent'
+
+With ARG, perform this action that many times."
+  (interactive "*p")
+  (unless arg
+    (setq arg 1))
+  (dotimes (_ arg)
+	(let* (
+		   (bol (line-beginning-position))
+		   (eol (line-end-position))
+		   (line (buffer-substring-no-properties bol eol)))
+	  (string-match "\\(^[\t ]*\\)" line)
+	  (insert "\n")
+	  (insert (match-string 1 line)))))
+	  
+(defun ew-enable-custom-indentation () (interactive)
+  ;;  Make tab insert literal tab
+  (local-set-key [tab] 'tab-to-tab-stop)
+  ;;  Autoindent with S-tab
+  (local-set-key [backtab] 'indent-for-tab-command)
+  ;;  Autoindent on newline
+  (local-set-key (kbd "<return>") 'ew-newline-and-indent))
+  
+;;  Override tab and return bindings only in prog-mode
+(add-hook 'prog-mode-hook 'ew-enable-custom-indentation)
+;;  Disable electric-indent-mode
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+;;  Dont eat whitespace on save
+(remove-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;;Other
 ;;  Set tab width
 (setq-default c-basic-offset 4
@@ -75,12 +108,6 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'erase-buffer 'disabled nil)
-;;  Disable electric-indent-mode
-(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
-;;  Make tab insert literal tab
-(global-set-key [tab] 'tab-to-tab-stop)
-;;  Autoindent with S-tab
-(global-set-key [backtab] 'indent-for-tab-command)
 ;;  Drag text with alt-up/down
 (use-package drag-stuff
   :config
