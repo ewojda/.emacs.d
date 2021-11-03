@@ -113,3 +113,5 @@ With ARG, perform this action that many times."
   :config
   (global-set-key (kbd "M-<up>") (lambda () (interactive) (drag-stuff-up 1)))
   (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-down 1))))
+;;  Set default mode to prog-mode
+(setq-default major-mode 'prog-mode)
