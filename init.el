@@ -112,4 +112,4 @@ With ARG, perform this action that many times."
 (use-package drag-stuff
   :config
   (global-set-key (kbd "M-<up>") (lambda () (interactive) (drag-stuff-up 1)))
-  (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-up -1))))
+  (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-down 1))))
