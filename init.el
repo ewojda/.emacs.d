@@ -41,6 +41,13 @@
   (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
   (setq lua-indent-level 4)
   (add-hook 'lua-mode-hook #'lsp-deferred))
+;; Haxe
+(use-package haxe-mode)
+(use-package battle-haxe
+  :hook (haxe-mode . battle-haxe-mode)
+  :custom
+  (battle-haxe-yasnippet-completion-expansion t "Keep this if you want yasnippet to expand completions when it's available.")
+  (battle-haxe-immediate-completion nil "Toggle this if you want to immediately trigger completion when typing '.' and other relevant prefixes."))
 
 ;;Theme
 (use-package monokai-theme
