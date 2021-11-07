@@ -92,6 +92,16 @@ With ARG, perform this action that many times."
 ;;  Dont eat whitespace on save
 (remove-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;;Other bindings
+;;  Drag text with alt-up/down
+(use-package drag-stuff
+  :config
+  (global-set-key (kbd "M-<up>") (lambda () (interactive) (drag-stuff-up 1)))
+  (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-down 1))))
+;;  Paste with C-v
+(global-set-key (kbd "C-v") 'yank)
+(global-set-key (kbd "M-v") 'yank-pop)
+
 ;;Other
 ;;  Set tab width
 (setq-default c-basic-offset 4
@@ -99,20 +109,12 @@ With ARG, perform this action that many times."
               indent-tabs-mode t)
 ;;  Enable tab bar
 (tab-bar-mode 1)
-;;  Paste with C-v
-(global-set-key (kbd "C-v") 'yank)
-(global-set-key (kbd "M-v") 'yank-pop)
 ;;  Disable line wrapping
 (set-default 'truncate-lines t)
 ;;  Enable functions disabled by default
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'erase-buffer 'disabled nil)
-;;  Drag text with alt-up/down
-(use-package drag-stuff
-  :config
-  (global-set-key (kbd "M-<up>") (lambda () (interactive) (drag-stuff-up 1)))
-  (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-down 1))))
 ;;  Set default mode to prog-mode
 (setq-default major-mode 'prog-mode)
 ;;  Change font size interactively
