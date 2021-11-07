@@ -93,6 +93,16 @@ With ARG, perform this action that many times."
 (remove-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;Other bindings
+;;  Unbind C-_ in undo-tree
+(define-key undo-tree-map (kbd "C-_") nil)
+;;  Resize window bindings
+(setq ew-resize-window-lines-horizontal-amount 2)
+(setq ew-resize-window-lines-vertical-amount 1)
+
+(global-set-key (kbd "C--") (lambda () (interactive) (shrink-window-horizontally ew-resize-window-lines-horizontal-amount)))
+(global-set-key (kbd "C-=") (lambda () (interactive) (enlarge-window-horizontally ew-resize-window-lines-horizontal-amount)))
+(global-set-key (kbd "C-_") (lambda () (interactive) (shrink-window ew-resize-window-lines-vertical-amount)))
+(global-set-key (kbd "C-+") (lambda () (interactive) (enlarge-window ew-resize-window-lines-vertical-amount)))
 ;;  Drag text with alt-up/down
 (use-package drag-stuff
   :config
