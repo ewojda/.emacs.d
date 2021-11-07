@@ -102,6 +102,7 @@ With ARG, perform this action that many times."
 ;;Other bindings
 ;;  Unbind C-_ in undo-tree
 (define-key undo-tree-map (kbd "C-_") nil)
+(global-set-key (kbd "C-z") 'undo-tree-undo)
 ;;  Resize window bindings
 (setq ew-resize-window-lines-horizontal-amount 2)
 (setq ew-resize-window-lines-vertical-amount 1)
