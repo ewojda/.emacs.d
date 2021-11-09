@@ -118,8 +118,8 @@ With ARG, perform this action that many times."
   (global-set-key (kbd "M-<up>") (lambda () (interactive) (drag-stuff-up 1)))
   (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-down 1))))
 ;;  Paste with C-v
-(global-set-key (kbd "C-v") 'yank)
-(global-set-key (kbd "M-v") 'yank-pop)
+(define-key key-translation-map (kbd "C-v") (kbd "C-y"))
+(define-key key-translation-map (kbd "M-v") (kbd "M-y"))
 
 ;;Other
 ;;  Set tab width
