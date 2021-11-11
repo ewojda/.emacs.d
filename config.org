@@ -1,0 +1,196 @@
+#+TITLE: My Emacs Configuration
+#+AUTHOR: Emil Wojda
+* Sanemacs
+#+BEGIN_SRC emacs-lisp
+(load "~/.emacs.d/sanemacs.el" nil t)
+#+END_SRC
+* Completion
+** Snippets
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+#+END_SRC
+** Parens
+#+begin_src emacs-lisp
+(use-package smartparens
+  :config
+  (smartparens-global-mode t)
+  (require 'smartparens-config))
+#+end_src
+** Text completion
+*** General
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package counsel
+  :config
+  (ivy-mode 1))
+#+END_SRC
+*** Programming
+**** LSP
+#+begin_src emacs-lisp
+(use-package lsp-mode)
+(use-package lsp-ui
+  :config
+  (setq lsp-ui-doc-position 'bottom))
+#+end_src
+
+**** Go
+#+begin_src emacs-lisp
+(use-package go-mode
+  :config
+  (add-hook 'go-mode-hook 'lsp-deferred))
+#+end_src
+**** Web
+#+begin_src emacs-lisp
+(use-package web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+#+end_src
+**** Git
+#+begin_src emacs-lisp
+(use-package magit)
+#+end_src
+**** Lua
+#+begin_src emacs-lisp
+(use-package lua-mode
+  :config
+  (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+  (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+  (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+  (setq lua-indent-level 4)
+  (add-hook 'lua-mode-hook #'lsp-deferred))
+#+end_src
+**** Haxe
+#+begin_src emacs-lisp
+(use-package haxe-mode)
+(use-package battle-haxe
+  :hook (haxe-mode . battle-haxe-mode)
+  :custom
+  (battle-haxe-yasnippet-completion-expansion t "Keep this if you want yasnippet to expand completions when it's available.")
+  (battle-haxe-immediate-completion nil "Toggle this if you want to immediately trigger completion when typing '.' and other relevant prefixes."))
+#+end_src
+**** Nix
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :mode "\\.nix\\'")
+#+end_src
+
+* Theme
+#+begin_src emacs-lisp
+(use-package monokai-theme
+  :config
+  (load-theme 'monokai t))
+#+end_src
+
+* Scrolling
+#+begin_src emacs-lisp
+(setq scroll-preserve-screen-position t)
+(scroll-bar-mode 1)
+
+(setq ew-scroll-lines-vertical-amount 5)
+(setq ew-scroll-lines-horizontal-amount 20)
+
+(global-set-key (kbd "<next>") (lambda () (interactive) (scroll-up ew-scroll-lines-vertical-amount)))
+(global-set-key (kbd "<prior>") (lambda () (interactive) (scroll-down ew-scroll-lines-vertical-amount)))
+(global-set-key (kbd "C-<next>") (lambda () (interactive) (scroll-left ew-scroll-lines-horizontal-amount)))
+(global-set-key (kbd "C-<prior>") (lambda () (interactive) (scroll-right ew-scroll-lines-horizontal-amount)))
+#+end_src
+
+* Indentation
+#+begin_src emacs-lisp
+(defun ew-newline-and-indent (&optional arg)
+  "Insert a newline, then indent exactly as last line.
+Adapted from `newline-and-indent'
+
+With ARG, perform this action that many times."
+  (interactive "*p")
+  (unless arg
+    (setq arg 1))
+  (dotimes (_ arg)
+	(let* (
+		   (bol (line-beginning-position))
+		   (eol (line-end-position))
+		   (line (buffer-substring-no-properties bol eol)))
+	  (string-match "\\(^[\t ]*\\)" line)
+	  (insert "\n")
+	  (insert (match-string 1 line)))))
+
+(defun ew-enable-custom-indentation () (interactive)
+  ;;  Make tab insert literal tab
+  (local-set-key [tab] 'tab-to-tab-stop)
+  ;;  Autoindent with S-tab
+  (local-set-key [backtab] 'indent-for-tab-command)
+  ;;  Autoindent on newline
+  (local-set-key (kbd "<return>") 'ew-newline-and-indent))
+
+;;  Override tab and return bindings only in prog-mode
+(add-hook 'prog-mode-hook 'ew-enable-custom-indentation)
+;;  Disable electric-indent-mode
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+;;  Dont eat whitespace on save
+(remove-hook 'before-save-hook 'delete-trailing-whitespace)
+#+end_src
+* Misc. bindings
+** Unbind C-_ in undo-tree
+#+begin_src emacs-lisp
+(define-key undo-tree-map (kbd "C-_") nil)
+(global-set-key (kbd "C-z") 'undo-tree-undo)
+(global-set-key (kbd "C-M-z") 'undo-tree-redo)
+#+end_src
+** Resize window bindings
+#+begin_src emacs-lisp
+(setq ew-resize-window-lines-horizontal-amount 2)
+(setq ew-resize-window-lines-vertical-amount 1)
+
+(global-set-key (kbd "C--") (lambda () (interactive) (shrink-window-horizontally ew-resize-window-lines-horizontal-amount)))
+(global-set-key (kbd "C-=") (lambda () (interactive) (enlarge-window-horizontally ew-resize-window-lines-horizontal-amount)))
+(global-set-key (kbd "C-_") (lambda () (interactive) (shrink-window ew-resize-window-lines-vertical-amount)))
+(global-set-key (kbd "C-+") (lambda () (interactive) (enlarge-window ew-resize-window-lines-vertical-amount)))
+#+end_src
+** Drag text with alt-up/down
+#+begin_src emacs-lisp
+(use-package drag-stuff
+  :config
+  (global-set-key (kbd "M-<up>") (lambda () (interactive) (drag-stuff-up 1)))
+  (global-set-key (kbd "M-<down>") (lambda () (interactive) (drag-stuff-down 1))))
+#+end_src
+** Paste with C-v
+#+begin_src emacs-lisp
+(define-key key-translation-map (kbd "C-v") (kbd "C-y"))
+(define-key key-translation-map (kbd "M-v") (kbd "M-y"))
+#+end_src
+** Set tab width
+#+begin_src emacs-lisp
+(setq-default c-basic-offset 4
+              tab-width 4
+              indent-tabs-mode t)
+#+end_src
+** Enable tab bar
+#+begin_src emacs-lisp
+(tab-bar-mode 1)
+#+end_src
+** Disable line wrapping
+#+begin_src emacs-lisp
+(set-default 'truncate-lines t)
+#+end_src
+** Enable functions disabled by default
+#+begin_src emacs-lisp
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'erase-buffer 'disabled nil)
+#+end_src
+** Set default mode to prog-mode
+#+begin_src emacs-lisp
+(setq-default major-mode 'prog-mode)
+#+end_src
+** Change font size interactively
+#+begin_src emacs-lisp
+(defun ew-font-size () (interactive)
+  (let ((size (string-to-number (read-string "New font size: "))))
+	(set-face-attribute 'default nil :height size)))
+#+end_src
