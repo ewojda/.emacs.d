@@ -101,7 +101,10 @@ With ARG, perform this action that many times."
 #+end_src
 **** Haxe
 #+begin_src emacs-lisp
-(use-package haxe-mode)
+(use-package haxe-mode
+  :config
+  (setq haxe-mode-map nil)
+  (add-hook 'haxe-mode-hook 'ew-enable-custom-indentation))
 (use-package battle-haxe
   :hook (haxe-mode . battle-haxe-mode)
   :custom
