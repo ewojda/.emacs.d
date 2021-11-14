@@ -4,6 +4,40 @@
 #+BEGIN_SRC emacs-lisp
 (load "~/.emacs.d/sanemacs.el" nil t)
 #+END_SRC
+* Indentation
+#+begin_src emacs-lisp
+(defun ew-newline-and-indent (&optional arg)
+  "Insert a newline, then indent exactly as last line.
+Adapted from `newline-and-indent'
+
+With ARG, perform this action that many times."
+  (interactive "*p")
+  (unless arg
+    (setq arg 1))
+  (dotimes (_ arg)
+	(let* (
+		   (bol (line-beginning-position))
+		   (eol (line-end-position))
+		   (line (buffer-substring-no-properties bol eol)))
+	  (string-match "\\(^[\t ]*\\)" line)
+	  (insert "\n")
+	  (insert (match-string 1 line)))))
+
+(defun ew-enable-custom-indentation () (interactive)
+  ;;  Make tab insert literal tab
+  (local-set-key [tab] 'tab-to-tab-stop)
+  ;;  Autoindent with S-tab
+  (local-set-key [backtab] 'indent-for-tab-command)
+  ;;  Autoindent on newline
+  (local-set-key (kbd "<return>") 'ew-newline-and-indent))
+
+;;  Override tab and return bindings only in prog-mode
+(add-hook 'prog-mode-hook 'ew-enable-custom-indentation)
+;;  Disable electric-indent-mode
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+;;  Dont eat whitespace on save
+(remove-hook 'before-save-hook 'delete-trailing-whitespace)
+#+end_src
 * Completion
 ** Snippets
 #+BEGIN_SRC emacs-lisp
@@ -101,40 +135,6 @@
 (global-set-key (kbd "C-<prior>") (lambda () (interactive) (scroll-right ew-scroll-lines-horizontal-amount)))
 #+end_src
 
-* Indentation
-#+begin_src emacs-lisp
-(defun ew-newline-and-indent (&optional arg)
-  "Insert a newline, then indent exactly as last line.
-Adapted from `newline-and-indent'
-
-With ARG, perform this action that many times."
-  (interactive "*p")
-  (unless arg
-    (setq arg 1))
-  (dotimes (_ arg)
-	(let* (
-		   (bol (line-beginning-position))
-		   (eol (line-end-position))
-		   (line (buffer-substring-no-properties bol eol)))
-	  (string-match "\\(^[\t ]*\\)" line)
-	  (insert "\n")
-	  (insert (match-string 1 line)))))
-
-(defun ew-enable-custom-indentation () (interactive)
-  ;;  Make tab insert literal tab
-  (local-set-key [tab] 'tab-to-tab-stop)
-  ;;  Autoindent with S-tab
-  (local-set-key [backtab] 'indent-for-tab-command)
-  ;;  Autoindent on newline
-  (local-set-key (kbd "<return>") 'ew-newline-and-indent))
-
-;;  Override tab and return bindings only in prog-mode
-(add-hook 'prog-mode-hook 'ew-enable-custom-indentation)
-;;  Disable electric-indent-mode
-(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
-;;  Dont eat whitespace on save
-(remove-hook 'before-save-hook 'delete-trailing-whitespace)
-#+end_src
 * Misc. bindings
 ** Unbind C-_ in undo-tree
 #+begin_src emacs-lisp
