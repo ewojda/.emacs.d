@@ -191,6 +191,14 @@ With ARG, perform this action that many times."
 (setq-default major-mode 'fundamental-mode)
 (setq initial-major-mode 'fundamental-mode)
 #+end_src
+** Bindings to quickly change mode
+#+begin_src emacs-lisp
+  (global-set-key (kbd "M-p p") 'prog-mode)
+  (global-set-key (kbd "M-p l") 'lisp-mode)
+  (global-set-key (kbd "M-p f") 'fundamental-mode)
+  (global-set-key (kbd "M-p o") 'org-mode)
+  (global-set-key (kbd "M-p v") 'visual-line-mode)
+
 #+end_src
 ** Change font size interactively
 #+begin_src emacs-lisp
