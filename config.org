@@ -41,9 +41,8 @@ With ARG, perform this action that many times."
 * Completion
 ** Snippets
 #+BEGIN_SRC emacs-lisp
-(use-package yasnippet
-  :config
-  (yas-global-mode 1))
+  (use-package yasnippet
+	:hook (prog-mode . yas-minor-mode))
 #+END_SRC
 ** Parens
 #+begin_src emacs-lisp
