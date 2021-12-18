@@ -186,9 +186,11 @@ With ARG, perform this action that many times."
 (put 'upcase-region 'disabled nil)
 (put 'erase-buffer 'disabled nil)
 #+end_src
-** Set default mode to prog-mode
+** Set default mode
 #+begin_src emacs-lisp
-(setq-default major-mode 'prog-mode)
+(setq-default major-mode 'fundamental-mode)
+(setq initial-major-mode 'fundamental-mode)
+#+end_src
 #+end_src
 ** Change font size interactively
 #+begin_src emacs-lisp
