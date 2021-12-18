@@ -105,11 +105,6 @@ With ARG, perform this action that many times."
   :config
   (setq haxe-mode-map nil)
   (add-hook 'haxe-mode-hook 'ew-enable-custom-indentation))
-(use-package battle-haxe
-  :hook (haxe-mode . battle-haxe-mode)
-  :custom
-  (battle-haxe-yasnippet-completion-expansion t "Keep this if you want yasnippet to expand completions when it's available.")
-  (battle-haxe-immediate-completion nil "Toggle this if you want to immediately trigger completion when typing '.' and other relevant prefixes."))
 #+end_src
 **** Nix
 #+begin_src emacs-lisp
