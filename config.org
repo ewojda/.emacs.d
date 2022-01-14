@@ -59,9 +59,10 @@ With ARG, perform this action that many times."
   (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
-(use-package counsel
-  :config
-  (ivy-mode 1))
+  (use-package vertico
+	:ensure t
+	:init
+	(vertico-mode))
 #+END_SRC
 *** Programming
 **** LSP
