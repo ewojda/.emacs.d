@@ -98,6 +98,11 @@ With ARG, perform this action that many times."
   (use-package lua-mode
 	:mode "\\.lua\\'"
 	:interpreter "lua"
+	:custom
+	(lsp-clients-lua-language-server-command "lua-language-server")
+	(lsp-clients-lua-language-server-bin "/run/current-system/sw/bin/lua-language-server")
+	(lsp-clients-lua-language-server-install-dir "/run/current-system/sw/share/lua-language-server")
+	(lsp-clients-lua-language-server-main-location "/run/current-system/sw/share/lua-language-server/main.lua")
 	:config
 	(add-hook 'lua-mode-hook #'lsp-deferred)
 	(setq lua-indent-level 4))
