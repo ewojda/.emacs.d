@@ -129,7 +129,9 @@ With ARG, perform this action that many times."
   :config
   (load-theme 'monokai t))
 #+end_src
-
+#+begin_src emacs-lisp
+  (setq-default show-trailing-whitespace t)
+#+end_src
 * Scrolling
 #+begin_src emacs-lisp
 (setq scroll-preserve-screen-position t)
