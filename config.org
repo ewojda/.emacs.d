@@ -146,7 +146,7 @@ With ARG, perform this action that many times."
 (global-set-key (kbd "C-<prior>") (lambda () (interactive) (scroll-right ew-scroll-lines-horizontal-amount)))
 #+end_src
 
-* Misc. bindings
+* Other
 ** Unbind C-_ in undo-tree
 #+begin_src emacs-lisp
 (define-key undo-tree-map (kbd "C-_") nil)
