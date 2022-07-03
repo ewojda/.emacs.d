@@ -119,17 +119,17 @@
 ;;   (load-theme 'monokai t))
 ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-assemblage-theme/")
 ;; (load-theme "assemblage")
-;; (use-package badger-theme
-;;   :ensure t
-;;   :config (load-theme 'badger t))
-(use-package birds-of-paradise-plus-theme
-  :config
-  (disable-theme 'wheatgrass)
-  (load-theme 'birds-of-paradise-plus))
+(use-package badger-theme
+   :ensure t
+   :config (load-theme 'badger t))
+;; (use-package birds-of-paradise-plus-theme
+;;   :config
+;;   (disable-theme 'wheatgrass)
+;;   (load-theme 'birds-of-paradise-plus))
 (setq-default show-trailing-whitespace t)
 ;;* Scrolling
 (setq scroll-preserve-screen-position t)
-(scroll-bar-mode 1)
+;(scroll-bar-mode 1)
 
 (setq ew-scroll-lines-vertical-amount 5)
 (setq ew-scroll-lines-horizontal-amount 20)

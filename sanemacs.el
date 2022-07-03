@@ -98,8 +98,8 @@
 
 ;;; Load wheatgrass as the default theme if one is not loaded already
 
-(if (not custom-enabled-themes)
-    (load-theme 'wheatgrass t))
+;;(if (not custom-enabled-themes)
+;;    (load-theme 'wheatgrass t))
 
 (defun reload-config ()
   (interactive)
