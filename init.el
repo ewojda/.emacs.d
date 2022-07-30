@@ -133,9 +133,20 @@
 ;;   (load-theme 'monokai t))
 ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-assemblage-theme/")
 ;; (load-theme "assemblage")
-(use-package badger-theme
-   :ensure t
-   :config (load-theme 'badger t))
+
+(use-package modus-themes
+	:init (modus-themes-load-themes)
+	:config (load-theme 'modus-operandi))
+
+;; (use-package badger-theme :ensure t
+;; 	:config (load-theme 'badger t))
+
+;; (use-package sublime-themes	:ensure t
+;; 	:config (load-theme 'junio t))
+
+;; (use-package gruber-darker-theme
+;;    :ensure t
+;;    :config (load-theme 'badger t))
 ;; (use-package birds-of-paradise-plus-theme
 ;;   :config
 ;;   (disable-theme 'wheatgrass)
