@@ -125,6 +125,8 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((lua . t)))
+;;**** Gnuplot
+(use-package gnuplot)
 ;;* Theme
 ;; (use-package monokai-theme
 ;;   :config
