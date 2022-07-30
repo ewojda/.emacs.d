@@ -70,7 +70,19 @@
   (add-hook 'go-mode-hook 'lsp-deferred))
 ;;**** Web
 (use-package web-mode
-  :config (web-mode-use-tabs)
+  :config
+  (web-mode-use-tabs)
+  :custom
+  (web-mode-enable-auto-indentation nil)
+  (web-mode-code-indent-offset 4)
+  (web-mode-css-indent-offset 4)
+  (web-mode-markup-indent-offset 4)
+  (web-mode-attr-value-indent-offset 4)
+  (web-mode-attr-indent-offset 4)
+  (web-mode-style-padding 4)
+  (web-mode-script-padding 4)
+  (web-mode-part-padding 4)
+  (web-mode-block-padding 4)
   :mode "\\.html?\\'")
 ;;**** Git
 (use-package magit
