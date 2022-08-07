@@ -153,6 +153,7 @@
 ;;   (disable-theme 'wheatgrass)
 ;;   (load-theme 'birds-of-paradise-plus))
 (setq-default show-trailing-whitespace t)
+(add-hook 'term-mode-hook (lambda () (interactive) (setq-local show-trailing-whitespace nil)))
 ;;* Scrolling
 (setq scroll-preserve-screen-position t)
 ;(scroll-bar-mode 1)
