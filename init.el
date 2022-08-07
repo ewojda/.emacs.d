@@ -280,3 +280,5 @@
 	:config
 	(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 	(setq nov-text-width 70))
+;;** Bind find-file-at-point
+(global-set-key (kbd "C-x C-M-f") 'find-file-at-point)
