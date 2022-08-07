@@ -124,7 +124,8 @@
 ;;**** Org-Babel
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((lua . t)))
+ '((lua . t)
+   (gnuplot . t)))
 ;;**** Gnuplot
 (use-package gnuplot)
 ;;* Theme
