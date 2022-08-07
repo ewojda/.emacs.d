@@ -40,7 +40,7 @@
 (setq use-package-always-ensure t)
 
 ;;; Useful Defaults
-(setq-default cursor-type 'bar)           ; Line-style cursor similar to other text editors
+;; (setq-default cursor-type 'bar)           ; Line-style cursor similar to other text editors
 (setq inhibit-startup-screen t)           ; Disable startup screen
 (setq initial-scratch-message "")         ; Make *scratch* buffer blank
 (setq-default frame-title-format '("%b")) ; Make window title the buffer name
