@@ -138,6 +138,9 @@
    (go . t)))
 ;;**** Gnuplot
 (use-package gnuplot)
+;;**** GDScript
+;;https://github.com/godotengine/emacs-gdscript-mode
+(use-package gdscript-mode)
 ;;* Theme
 ;; (use-package monokai-theme
 ;;   :config
