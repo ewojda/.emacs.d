@@ -58,7 +58,9 @@
 ;;*** Programming
 ;;**** LSP
 (use-package lsp-mode
-  :mode "(\\.go\\')|(\\.lua\\')")
+  :mode "(\\.go\\')|(\\.lua\\')"
+  :config
+  (global-set-key (kbd "M-o") (lambda () (interactive) (lsp-hover))))
 (use-package lsp-ui
   :after lsp-mode
   :config
