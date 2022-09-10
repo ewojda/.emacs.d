@@ -215,7 +215,7 @@
 (defun ew-font-size () (interactive)
 	   (let ((size (string-to-number (read-string "New font size: "))))
 		 (set-face-attribute 'default nil :height size)))
-(global-set-key (kbd "M-p f") 'visual-line-mode)
+(global-set-key (kbd "M-p f") 'ew-font-size)
 ;;** Convert to title case
 (defun xah-title-case-region-or-line (@begin @end)
   "Title case text between nearest brackets, or current line, or text selection.
