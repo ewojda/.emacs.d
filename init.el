@@ -191,6 +191,8 @@
 ;;** Paste with C-v
 (define-key key-translation-map (kbd "C-v") (kbd "C-y"))
 (define-key key-translation-map (kbd "M-v") (kbd "M-y"))
+(define-key key-translation-map (kbd "C-y") (kbd "C-v"))
+(define-key key-translation-map (kbd "M-y") (kbd "M-v"))
 ;;** Enable tab bar
 (tab-bar-mode 1)
 ;;** Disable line wrapping
