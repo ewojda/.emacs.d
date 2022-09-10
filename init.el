@@ -104,18 +104,27 @@
   ;;(add-hook 'lua-mode-hook #'lsp-deferred)
   (setq lua-indent-level 4))
 ;;**** Haxe
-;;(use-package haxe-mode
-;;  :mode "\\.hx\\'"
-;;  :interpreter "haxe"
-;;  :config
-;;  (setq haxe-mode-map nil)
-;;  (add-hook 'haxe-mode-hook 'ew-enable-custom-indentation)
-;;  (add-hook 'haxe-mode-hook 'linum-mode))
-(add-to-list 'load-path (expand-file-name "funda-haxe-mode" user-emacs-directory))
-(use-package funda-haxe-mode
-  :mode "\\.hx\\'"
-  :interpreter "haxe"
-  :ensure nil)
+
+;; New with lsp
+(use-package haxe-mode
+ :mode "\\.hx\\'"
+ :interpreter "haxe"
+ :custom
+ (lsp-clients--haxe-server-path (expand-file-name "ew/haxe-language-server/server.js" user-emacs-directory))
+ ;; "~/.emacs.d/ew/haxe-language-server/server.js")
+ :config
+ (setq haxe-mode-map nil)
+ (add-hook 'haxe-mode-hook 'ew-fix-indentation)
+ (add-hook 'haxe-mode-hook 'linum-mode)
+ (add-hook 'haxe-mode-hook 'lsp))
+
+;; Old
+;; (add-to-list 'load-path (expand-file-name "funda-haxe-mode" user-emacs-directory))
+;; (use-package funda-haxe-mode
+;;   :mode "\\.hx\\'"
+;;   :interpreter "haxe"
+;;   :ensure nil)
+
 ;;**** Nix
 (use-package nix-mode
   :mode "\\.nix\\'")
