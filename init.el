@@ -47,6 +47,8 @@
 ;;** Text completion
 ;;*** General
 (use-package company
+  :custom
+  (company-minimum-prefix-length 0)
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 (use-package vertico
