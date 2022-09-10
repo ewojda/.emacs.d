@@ -60,7 +60,8 @@
 (use-package lsp-mode
   :mode "(\\.go\\')|(\\.lua\\')"
   :config
-  (global-set-key (kbd "M-o") (lambda () (interactive) (lsp-hover))))
+  (global-set-key (kbd "M-o") (lambda () (interactive) (lsp-hover)))
+  (global-set-key (kbd "M-O") (lambda () (interactive) (lsp-describe-thing-at-point))))
 (use-package lsp-ui
   :after lsp-mode
   :config
