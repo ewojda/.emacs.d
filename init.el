@@ -125,11 +125,17 @@
   :ensure t
   :mode "\\.cs\\'"
   )
+;;**** ESS
+(use-package ess)
 ;;**** Org-Babel
+(use-package ob-go)
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((lua . t)
-   (gnuplot . t)))
+   (gnuplot . t)
+   (R . t)
+   (C . t)
+   (go . t)))
 ;;**** Gnuplot
 (use-package gnuplot)
 ;;* Theme
