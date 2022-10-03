@@ -48,9 +48,11 @@
 ;;*** General
 (use-package company
   :custom
-  (company-minimum-prefix-length 0)
+  (company-minimum-prefix-length 9999)
   :config
-  (add-hook 'after-init-hook 'global-company-mode))
+  (add-hook 'after-init-hook 'global-company-mode)
+  (global-set-key (kbd "M-<return>") (lambda () (interactive) (company-manual-begin)))
+  (global-set-key (kbd "C-M-<return>") (lambda () (interactive) (company-manual-begin))))
 (use-package vertico
   :ensure t
   :init
