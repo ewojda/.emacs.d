@@ -148,6 +148,7 @@
    (R . t)
    (C . t)
    (go . t)))
+(use-package htmlize)
 ;;**** Gnuplot
 (use-package gnuplot)
 ;;**** GDScript
