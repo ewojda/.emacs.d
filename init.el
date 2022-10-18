@@ -33,6 +33,11 @@
 
 ;;  Override tab and return bindings only in prog-mode
 (add-hook 'prog-mode-hook 'ew-fix-indentation)
+;; Bring up autocomplete
+(add-hook 'prog-mode-hook
+  (lambda () (interactive)
+      (local-set-key (kbd "M-<return>") (lambda () (interactive) (company-manual-begin)))
+      (local-set-key (kbd "C-M-<return>") (lambda () (interactive) (company-manual-begin)))))
 ;;  Dont eat whitespace on save
 (remove-hook 'before-save-hook 'delete-trailing-whitespace)
 ;;* Completion
@@ -50,9 +55,7 @@
   :custom
   (company-minimum-prefix-length 9999)
   :config
-  (add-hook 'after-init-hook 'global-company-mode)
-  (global-set-key (kbd "M-<return>") (lambda () (interactive) (company-manual-begin)))
-  (global-set-key (kbd "C-M-<return>") (lambda () (interactive) (company-manual-begin))))
+  (add-hook 'after-init-hook 'global-company-mode))
 (use-package vertico
   :ensure t
   :init
