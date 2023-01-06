@@ -17,8 +17,8 @@
     (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode)
     (tool-bar-mode -1))
-;; (if (fboundp 'scroll-bar-mode)
-;;     (scroll-bar-mode -1))
+(if (fboundp 'scroll-bar-mode)
+     (scroll-bar-mode -1))
 
 ;;; Fix this bug:
 ;;; https://www.reddit.com/r/emacs/comments/cueoug/the_failed_to_download_gnu_archive_is_a_pretty/
@@ -51,10 +51,11 @@
 (delete-selection-mode 1)                 ; Selected text will be overwritten when you start typing
 (global-auto-revert-mode t)               ; Auto-update buffer if file has changed on disk
 (use-package undo-tree                    ; Enable undo-tree, sane undo/redo behavior
-(add-hook 'before-save-hook
-	  'delete-trailing-whitespace)    ; Delete trailing whitespace on save
   :init (global-undo-tree-mode)
   :custom (undo-tree-auto-save-history nil))
+
+;; (add-hook 'before-save-hook
+;; 	  'delete-trailing-whitespace)    ; Delete trailing whitespace on save
 (add-hook 'prog-mode-hook                 ; Show line numbers in programming modes
           (if (and (fboundp 'display-line-numbers-mode) (display-graphic-p))
               #'display-line-numbers-mode
